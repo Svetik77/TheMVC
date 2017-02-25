@@ -77,11 +77,19 @@ public class UserController {
 //			pageid = pageid * total + 1;
 	    	index = pageid * total + 1;
 		}
-//		List<Users> listUsersPages2 = this.userService.listUsersPages(pageid, total);
-		List<Users> listUsersPages2 = this.userService.listUsersPages(index, total);
-//		int listsize = listUsersPages2.size();
+
+		List<Users> listUsersPages2 = null;
+		List<Users> listUsersPagesAll = null;
+
+		try {
+			listUsersPages2 = this.userService.listUsersPages(index, total);
+
+			listUsersPagesAll = this.userService.listUsers();
+		} catch (Exception e) {
+			return "myerror";
+		}
+
 		
-		List<Users> listUsersPagesAll = this.userService.listUsers();
 		int sizeList = listUsersPagesAll.size();
 		int numberOfPages = 0;
 		if (sizeList % total == 0) {
