@@ -22,7 +22,7 @@
         <property name="url"
                   value="jdbc:mysql://localhost:3306/test"/>
         <property name="username" value="root"/>
-        <property name="password" value="sveta"/>
+        <property name="password" value="root"/>
     </bean>
 
     <!-- Hibernate 4 SessionFactory Bean definition -->
@@ -62,10 +62,14 @@
 
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
-    
-    <bean id="messageSource"
-        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="/WEB-INF/messages" />
+
+    <!-- Application Message Bundle -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>messages</value>
+            </list>
+        </property>
     </bean>
 
 </beans>
